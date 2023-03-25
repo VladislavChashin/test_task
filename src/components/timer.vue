@@ -96,6 +96,9 @@ export default {
             width: 95px;
             justify-content: space-between;
         }
+        img{
+            cursor: pointer;
+        }
     }
     .active{
         .timer-wrap_time{
