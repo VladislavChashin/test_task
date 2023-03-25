@@ -9,26 +9,38 @@
 <script lang="js">
 import Timer from './components/timer.vue';
 
-export default { components: { Timer } };
+export default { 
+    components: { Timer } 
+    
+    };
 </script>
 
 <style lang="scss">
+@font-face {
+    font-family: 'GothamPro';
+    src: url('./fonts/GothamPro.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 body{
     background-color:  #353638;
 }
-#app{
-    width: 100%;
-    height: 100%;
-    margin: 0 auto;
-}
+
 .main{
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     .timers{
-        width: 775px;
-        min-height: 495px;
+        max-width: 850px;
+        padding-top: 48px;
+        display: flex;
+        flex-wrap: wrap;
+        @media (max-width: 840px){
+            max-width: 550px;
+        }
+        @media (max-width: 565px){
+            max-width: 275px;
+        }
     }
 }
 </style>

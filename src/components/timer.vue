@@ -1,8 +1,9 @@
 <template>
-    <div class="timers_timer-wrap">
+    <div class="timers_timer-wrap" 
+        v-bind:class="{active: state}">
         <div class="timer-wrap_time">
-            <p v-if="hours != 0">{{hours}} : {{minutes}} : {{seconds}}</p>
-            <p v-else-if="minutes != 0">{{minutes}} : {{seconds}}</p>
+            <p v-if="hours != 0">{{hours}}:{{minutes}}:{{seconds}}</p>
+            <p v-else-if="minutes != 0">{{minutes}}:{{seconds}}</p>
             <p v-else>{{seconds}}</p>
         </div>
         <div class="timer-wrap_interaction">
@@ -33,15 +34,17 @@ export default {
                 this.timerId = setInterval(() =>{
                 if (this.seconds == 59 ){
                     if (this.minutes == 59){ 
-                        if (this.hours == 100){
+                        if (this.hours == -1){
                             clearInterval(this.timerId);
                         }else{
-                            this.hours += 1
                             this.minutes = 0
+                            this.hours += 1
+                            
                         }
                     }else{
-                        this.minutes += 1
                         this.seconds = 0
+                        this.minutes += 1
+                        
                     }
                 }else{
                     this.seconds += 1
@@ -56,6 +59,7 @@ export default {
         },
         beforeDestroy() {
             clearInterval(this.timerId);
+            this.state = false;
             this.seconds = 0;
             this.minutes = 0; 
             this.hours = 0;
@@ -72,17 +76,37 @@ export default {
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin: 22.5px 25px;
         .timer-wrap_time{
+            width: 100%;
+            height: 59px;
+            border-bottom: 1px solid #9E9E9E;
             p{
-                font-family: 'Gotham Pro';
+                font-family: 'GothamPro';
                 font-weight: 400;
                 font-size: 22px;
                 line-height: 21px;
+                text-align: center;
                 color: #9E9E9E;
             }
         }
         .timer-wrap_interaction{
             display: flex;
+            height: 60px;
+            width: 95px;
+            justify-content: space-between;
+        }
+    }
+    .active{
+        .timer-wrap_time{
+            border-bottom: 1px solid #FFFFFF;
+            p{
+                color: #FFFFFF;
+            }
+            
+        }
+        img{
+            filter: contrast(1000%);
         }
     }
 </style>
