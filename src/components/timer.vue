@@ -20,9 +20,9 @@ export default {
     
     data() {
     return {
-      hours: 59,
-      minutes: 59,
-      seconds: 50,
+      hours: 0,
+      minutes: 0,
+      seconds: 0,
       state: false,
       timerId: null,
         };
